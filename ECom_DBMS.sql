@@ -187,26 +187,24 @@ WHERE
 /*------------------------------------------------------------------------*/
 /* 7) Find the least expensive product from each category and print the table with category id, name, product name and price of the product */
 /*------------------------------------------------------------------------*/
-SELECT
-  c.CAT_ID,
-  c.CAT_NAME,
-  p.PRO_NAME,
-  sp.SUPP_PRICE
+SELECT 
+    c.CAT_ID, c.CAT_NAME, p.PRO_NAME, sp.SUPP_PRICE
 FROM
-  category c
-  JOIN product p ON c.CAT_ID = p.CAT_ID
-  JOIN supplier_pricing sp ON p.PRO_ID = sp.PRO_ID
+    category c
+        JOIN
+    product p ON c.CAT_ID = p.CAT_ID
+        JOIN
+    supplier_pricing sp ON p.PRO_ID = sp.PRO_ID
 WHERE
-  sp.SUPP_PRICE = (
-    SELECT
-      MIN(SUPP_PRICE)
-    FROM
-      supplier_pricing
-    WHERE
-      PRO_ID = p.PRO_ID
-  )
-ORDER BY
-  c.CAT_ID;
+    sp.SUPP_PRICE = (SELECT 
+            MIN(SUPP_PRICE)
+        FROM
+            supplier_pricing
+                JOIN
+            product ON supplier_pricing.PRO_ID = product.PRO_ID
+        WHERE
+            CAT_ID = c.CAT_ID)
+ORDER BY c.CAT_ID;
 
 
 
