@@ -221,6 +221,15 @@ FROM
 WHERE
     ORD_DATE > '2021-10-05';
 
+/*------------------------------------------------------------------------*/
+/* 9) Display customer name and gender whose names start or end with character 'A'. */
+/*------------------------------------------------------------------------*/    
+SELECT 
+    CUS_NAME, CUS_GENDER
+FROM
+    customer
+WHERE
+    CUS_NAME LIKE 'A%' OR CUS_NAME LIKE '%A';
 
 
 
