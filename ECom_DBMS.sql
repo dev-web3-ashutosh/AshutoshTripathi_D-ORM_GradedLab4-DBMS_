@@ -206,7 +206,20 @@ WHERE
             CAT_ID = c.CAT_ID)
 ORDER BY c.CAT_ID;
 
-
+/*------------------------------------------------------------------------*/
+/* 8) Display the Id and Name of the Product ordered after “2021-10-05”. */
+/*------------------------------------------------------------------------*/
+USE ecom_dbms;
+SELECT 
+    p.PRO_ID, p.PRO_name
+FROM
+    orders AS o
+        JOIN
+    supplier_pricing AS sp ON o.PRICING_ID = sp.PRICING_ID
+        JOIN
+    product AS p ON sp.PRO_ID = p.PRO_ID
+WHERE
+    ORD_DATE > '2021-10-05';
 
 
 
